@@ -1,0 +1,47 @@
+# ambf_executable_path: "/home/amunawa2/ambf/bin/lin-x86_64/ambf_simulator"
+ambf_executable_path: "../../../ambf/bin/lin-x86_64/ambf_simulator"
+pupil_executable_path: "pupil_capture"
+recording_script_path: "../data_record.py"
+launch_file_path: "../../launch.yaml"
+recording_base_path: "../../../Volumetric Drilling Userstudy/"
+
+volumes: [volume1, volume2, volume3, volume4, volume5]
+volume1:
+  icon_path: ./assets/spine_P0.png
+  adf_path: ../../ADF/spine_256_P0
+  sdf_path: ../../resources/edt_grids/spine_P0_256
+  unit: 0.0049
+  spacial_resolution: 0.48046899
+  name: 'Segments P0'
+
+volume2:
+  icon_path: ./assets/spine_P0.png
+  adf_path: ../../ADF/spine_256_P1
+  sdf_path: ../../resources/edt_grids/spine_P1_256
+  unit: 0.005807622504537205
+  spacial_resolution: 0.3125
+  name: 'Segments P1'
+
+volume3:
+  icon_path: ./assets/spine_P0.png
+  adf_path: ../../ADF/spine_256_P2
+  sdf_path: ../../resources/edt_grids/spine_P2_256
+  unit: 0.00583941605839416
+  spacial_resolution: 0.3125
+  name: 'Segments P2'
+
+volume4:
+  icon_path: ./assets/spine_P0.png
+  adf_path: ../../ADF/spine_256_P4
+  sdf_path: ../../resources/edt_grids/spine_P4_256
+  unit: 0.005788450232894677
+  spacial_resolution: 0.31640625
+  name: 'Segments P4'
+
+volume5:
+  icon_path: ./assets/spine_P0.png
+  adf_path: ../../ADF/spine_256_P7
+  sdf_path: ../../resources/edt_grids/spine_P7_256
+  unit: 0.006189547827709171
+  spacial_resolution: 0.42968801
+  name: 'Segments P7'

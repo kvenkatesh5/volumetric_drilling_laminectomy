@@ -25,6 +25,6 @@ hdf5_files
 
 *.blend1
 
-./segmentations/P*
+./segmentations
 segmentations-4.10.2023.zip
 
