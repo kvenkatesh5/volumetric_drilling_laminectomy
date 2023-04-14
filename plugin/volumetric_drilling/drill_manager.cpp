@@ -217,7 +217,9 @@ void DrillManager::update(double dt)
         m_hapticDevice->getTransform(m_T_i);
         cMatrix3d rotation_offset;
         // UPDATE EULER ANGLES for initial offset
-        rotation_offset.setExtrinsicEulerRotationDeg(50,0,15, C_EULER_ORDER_XYZ);
+        // (x_angle, y_angle, z_angle)
+        // y_angle is the rotation around the pivot on the Phantom Omni (where the pen is connected)
+        rotation_offset.setExtrinsicEulerRotationDeg(0,40,0, C_EULER_ORDER_XYZ);
         //
         m_T_i.setLocalRot(rotation_offset * m_T_i.getLocalRot());
         m_hapticDevice->getLinearVelocity(m_V_i);
