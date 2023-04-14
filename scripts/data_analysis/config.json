@@ -1,0 +1,20 @@
+{
+    "participants": [
+        ["klobo", "/home/virtualdrilling/Volumetric Drilling Userstudy/4-6-Testing/klobo-participant"],
+        ["pexvxk", "/home/virtualdrilling/Volumetric Drilling Userstudy/4-6-Testing/pexvxk-participant"],
+        ["tbpq", "/home/virtualdrilling/Volumetric Drilling Userstudy/4-6-Testing/tbpq-participant"],
+        ["cxoxe", "/home/virtualdrilling/Volumetric Drilling Userstudy/4-13-Testing/cxoxe-participant"]
+    ],
+    "cases": [
+        "P0_L1_color",
+        "P0_L3_color",
+        "P1_L1_no_color",
+        "P1_L3_no_color",
+        "P2_L1_no_color",
+        "P2_L2_color",
+        "P4_L1_no_color",
+        "P4_L2_color",
+        "P7_L1_color",
+        "P7_L3_no_color"
+    ]
+}
