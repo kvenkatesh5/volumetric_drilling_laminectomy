@@ -187,10 +187,15 @@ if __name__ == "__main__":
                 drilling_times_nocolor.append(drilling_times[p][c])
         drilling_times_plotting["NoColor"].append(np.mean(drilling_times_nocolor))
         drilling_times_plotting["Color"].append(np.mean(drilling_times_color))  
-    # plt.boxplot(
-    #     [drilling_times_plotting[x] for x in drilling_times_plotting.keys()]
-    # )
-    # plt.show()
+    plt.boxplot(
+        [drilling_times_plotting[x] for x in drilling_times_plotting.keys()]
+    )
+    plt.ylabel("Time (s)")
+    plt.xlabel("Condition")
+    plt.ylim([0,250])
+    plt.xticks([1,2], ["NoNav", "ColorNav"])
+    plt.title("Total Drilling Time")
+    plt.show()
 
     # get number of red voxels removed
     red_voxels_removed = get_nvoxels_removed(all_dfs, "Red", participant_list, case_list)
@@ -207,9 +212,14 @@ if __name__ == "__main__":
             else:
                 red_voxels_removed_nocolor.append(red_voxels_removed[p][c])
         red_voxels_removed_plotting["NoColor"].append(np.mean(red_voxels_removed_nocolor))
-        red_voxels_removed_plotting["Color"].append(np.mean(red_voxels_removed_color))  
-    # plt.boxplot(
-    #     [red_voxels_removed_plotting[x] for x in red_voxels_removed_plotting.keys()]
-    # )
-    # plt.show()
+        red_voxels_removed_plotting["Color"].append(np.mean(red_voxels_removed_color))
+    plt.boxplot(
+        [red_voxels_removed_plotting[x] for x in red_voxels_removed_plotting.keys()]
+    )
+    plt.ylabel("Number of Voxels")
+    plt.xlabel("Condition")
+    plt.ylim([0,16000])
+    plt.xticks([1,2], ["NoNav", "ColorNav"])
+    plt.title("Red Voxels Removed")
+    plt.show()
     
