@@ -1,10 +1,12 @@
-# TODOs
-- Resegment spines to represent laminectomy cuts
-- Fix the back EDT plane
-- Pipeline EDT generation
-- Work out issue with seg nrrds ***or move to Henry's plugin
+# READY FOR USER STUDY
 
-# How to run the pipeline
+## TODOs
+- Resegment spines to represent laminectomy cuts --> DONE
+- Fix the back EDT plane --> DONE (implemented the correct EDTs in plugin)
+- Pipeline EDT generation --> DONE
+- Work out issue with seg nrrds ***or move to Henry's plugin --> DONE
+
+## How to run the pipeline
 Let's say we are building P0. Adapt as needed for the other spines.
 ```
 cd ~/volumetric_drilling
