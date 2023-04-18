@@ -27,6 +27,8 @@ hdf5_files
 
 ./segmentations
 segmentations-4.10.2023.zip
+segmentations/
+reference-images-4-5/
 
 # THIS FILE HAS PROTECTED INFORMATION
 ./scripts/data_analysis/config.json
