@@ -1,4 +1,5 @@
-# READY FOR USER STUDY
+# DEVELOPING HDF5 SAVING
+# UNDER DEVELOPMENT, USE MAIN FOR USER STUDY
 
 ## TODOs
 - Resegment spines to represent laminectomy cuts --> DONE
