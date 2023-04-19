@@ -408,7 +408,7 @@ void afVolmetricDrillingPlugin::graphicsUpdate(){
 
     uThres.set(red_thres, yellow_thres, 0.0);
     m_volumeObject->getShaderProgram()->setUniform("uThres", uThres);
-    std::cout<<"COND"<<cond<<std::endl;
+    // std::cout<<"COND"<<cond<<std::endl;
     // printf("uUnit: %f, %f, %f\n", uUnit.x(), uUnit.y(), uUnit.z());
 
     if (cond == 1){
@@ -550,6 +550,15 @@ void afVolmetricDrillingPlugin::physicsUpdate(double dt){
                     m_voxelObj->m_texture->m_image->setVoxelColor(uint(ct.x()), uint(ct.y()), uint(ct.z()), m_zeroColor);
                     m_volumeUpdate.enclose(cVector3d(uint(ct.x()), uint(ct.y()), uint(ct.z())));
                     m_alpha_sum += m_alpha;
+
+                    // save this voxel to the tracking data structures
+                    voxel_times.push_back(m_worldPtr->getCurrentTimeStamp());
+                    voxel_colors.push_back(colorf);
+                    voxel_coordinates.push_back(ct);
+                    ofstream myfile;
+                    myfile.open("voxel_coordinates.txt", ios::app);
+                    myfile << ct.x() << " "<<ct.y() << " "<<ct.z()<<std::endl;
+                    myfile.close();
                 }
                 m_alpha_ave = m_alpha_sum/removalCount;
                 m_mutexVoxel.release();

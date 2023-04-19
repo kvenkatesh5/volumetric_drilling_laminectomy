@@ -50,6 +50,9 @@
 #include "drill_manager.h"
 #include "edt_utils_spine.h"
 
+#include <iostream>
+#include <fstream>
+
 using namespace std;
 using namespace ambf;
 
@@ -185,6 +188,12 @@ private:
 
     string loc;
     string spine;
+
+    // tracking the voxels removed
+    std::vector<double> voxel_times;
+    std::vector<cColorf> voxel_colors;
+    std::vector<cVector3d> voxel_coordinates;
+
 };
 
 
