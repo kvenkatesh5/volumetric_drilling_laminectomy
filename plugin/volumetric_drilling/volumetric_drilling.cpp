@@ -555,10 +555,6 @@ void afVolmetricDrillingPlugin::physicsUpdate(double dt){
                     voxel_times.push_back(m_worldPtr->getCurrentTimeStamp());
                     voxel_colors.push_back(colorf);
                     voxel_coordinates.push_back(ct);
-                    ofstream myfile;
-                    myfile.open("voxel_coordinates.txt", ios::app);
-                    myfile << ct.x() << " "<<ct.y() << " "<<ct.z()<<std::endl;
-                    myfile.close();
                 }
                 m_alpha_ave = m_alpha_sum/removalCount;
                 m_mutexVoxel.release();
