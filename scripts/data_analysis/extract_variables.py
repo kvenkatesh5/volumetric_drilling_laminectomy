@@ -3,11 +3,14 @@ import numpy as np
 from IPython.display import display
 import matplotlib.pyplot as plt
 import h5py
-import open3d as o3d
+# import open3d as o3d
 import pandas as pd
 import json
 import os
 import glob
+from scipy.stats import ttest_ind
+import scipy
+import seaborn as sns
 
 def assign_color(data_frame_row):
     alpha_value_adjusted = data_frame_row["Alpha_Adjusted"]
@@ -139,7 +142,9 @@ def get_nvoxels_removed(all_dfs, voxel_color, participant_list, case_list):
 if __name__ == "__main__":
 
     # read json with all the studies listed
-    with open("/home/virtualdrilling/volumetric_drilling/scripts/data_analysis/config.json", "r") as f:
+    # with open("/home/virtualdrilling/volumetric_drilling/scripts/data_analysis/config.json", "r") as f:
+    #     metadata = json.load(f)
+    with open("/Users/kesavan/Documents/volumetric_drilling_laminectomy/scripts/data_analysis/config_mac.json", "r") as f:
         metadata = json.load(f)
     
     # all_dfs indexes through all the participants
@@ -153,7 +158,8 @@ if __name__ == "__main__":
         for c in metadata["cases"]:
             dirname = os.path.join(pth, f"{p}_{c}")
             # for each hdf5 file
-            filenames = glob.glob(os.path.join(dirname, "*/*.hdf5"))
+            # FIXED DATA DIRECTORY FORMAT
+            filenames = glob.glob(os.path.join(dirname, "*.hdf5"))
             for f in filenames:
                 # since there can be multiple filenames per participant-case, we make a list
                 key = f"{p}_{c}"
@@ -192,9 +198,8 @@ if __name__ == "__main__":
     )
     plt.ylabel("Time (s)")
     plt.xlabel("Condition")
-    plt.ylim([0,250])
     plt.xticks([1,2], ["NoNav", "ColorNav"])
-    plt.title("Total Drilling Time")
+    # plt.title("Total Drilling Time")
     plt.show()
 
     # get number of red voxels removed
@@ -213,13 +218,26 @@ if __name__ == "__main__":
                 red_voxels_removed_nocolor.append(red_voxels_removed[p][c])
         red_voxels_removed_plotting["NoColor"].append(np.mean(red_voxels_removed_nocolor))
         red_voxels_removed_plotting["Color"].append(np.mean(red_voxels_removed_color))
-    plt.boxplot(
-        [red_voxels_removed_plotting[x] for x in red_voxels_removed_plotting.keys()]
+    sns.boxplot(
+        [red_voxels_removed_plotting[x] for x in red_voxels_removed_plotting.keys()],
+        width=0.3
     )
-    plt.ylabel("Number of Voxels")
-    plt.xlabel("Condition")
-    plt.ylim([0,16000])
-    plt.xticks([1,2], ["NoNav", "ColorNav"])
-    plt.title("Red Voxels Removed")
+    # plt.ylabel("Number of Voxels")
+    # plt.xlabel("Condition")
+    plt.xticks([0,1], ["NoNav", "ColorNav"])
+    # plt.title("Red Voxels Removed")
     plt.show()
-    
+
+    # T-test
+    tstat, pval = ttest_ind(red_voxels_removed_plotting["NoColor"], red_voxels_removed_plotting["Color"],
+              equal_var=False, random_state=42, alternative="greater")
+    print(np.mean(red_voxels_removed_plotting["NoColor"]))
+    print(np.mean(red_voxels_removed_plotting["Color"]))
+    print(tstat)
+    print(pval)
+    # F-test
+    fstat = np.var(red_voxels_removed_plotting["Color"]) / np.var(red_voxels_removed_plotting["NoColor"])
+    dfcolor = len(red_voxels_removed_plotting["Color"])-1
+    dfnocolor = len(red_voxels_removed_plotting["NoColor"])-1
+    pval = scipy.stats.f.cdf(fstat, dfcolor, dfnocolor)
+    print(pval)
